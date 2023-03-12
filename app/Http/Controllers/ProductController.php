@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(): View
     {
         return view('products.index');
     }
 
-    public function show()
+    public function show(): View
     {
         return view('products.show');
     }
