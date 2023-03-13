@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\{AdminProductController, HomeController, ProductController};
+use App\Http\Controllers\{AdminController, AdminProductController, HomeController, ProductController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,14 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::prefix('products')->group(function () {
-    Route::get('', [ProductController::class, 'index'])->name('product.index');
+    Route::get('', [ProductController::class, 'index'])->name('product.home');
     Route::get('/{id}', [ProductController::class, 'show'])->name('product.show');
 });
 
 Route::prefix('admin')->group(function () {
-    Route::get('/products', [AdminProductController::class, 'index'])->name('admin.products.index');
+    Route::get('', [AdminController::class, 'index'])->name('admin.home');
+    Route::get('/products', [AdminProductController::class, 'index'])->name('admin.products.home');
     Route::get('/products/edit', [AdminProductController::class, 'edit'])->name('admin.products.edit');
 });
