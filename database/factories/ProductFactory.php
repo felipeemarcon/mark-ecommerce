@@ -18,7 +18,7 @@ class ProductFactory extends Factory
     {
         return [
             'title' => fake()->name(),
-            'description' => fake()->unique()->safeEmail(),
+            'description' => fake()->paragraphs(4, true),
             'price' => fake()->randomFloat(2, 2, 1023),
             'image' => fake()->imageUrl(800, 450, 'Mark Store')
         ];
