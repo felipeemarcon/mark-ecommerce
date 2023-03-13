@@ -14,7 +14,7 @@
                             <a href="{{ route('product.show', $product->id) }}">
                                 <h2 class="text-gray-900 title-font text-lg font-medium">{{ $product->title }}</h2>
                             </a>
-                            <p class="mt-1">$16.00</p>
+                            <p class="mt-1">${{ $product->price }}</p>
                         </div>
                         <a href="{{ route('product.show', $product->id) }}" class="mt-3 text-indigo-500 inline-flex items-center">Ver mais
                             <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -24,6 +24,8 @@
                         </a>
                     </div>
                 @endforeach
+
+                {{ $products->links() }}
             </div>
         </div>
     </section>
