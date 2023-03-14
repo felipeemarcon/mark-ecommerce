@@ -10,13 +10,23 @@
                     <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{{ $product->title }}</h1>
                     <p class="leading-relaxed">{{ $product->description }}</p>
                     <div class="my-3">
-                        <span
-                            class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800">{{ $product->status }}</span>
+                        @if ($product->stock)
+                            <span
+                                class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800">Em
+                                estoque</span>
+                        @else
+                            <span
+                                class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-slate-100 text-slate-800">Fora
+                                de estoque</span>
+                        @endif
                     </div>
+
                     <div class="flex border-t-2 border-gray-100 mt-6 pt-6">
                         <span class="title-font font-medium text-2xl text-gray-900">${{ $product->price }}</span>
-                        <a
-                            class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Buy</a>
+                        @if ($product->stock)
+                            <a
+                                class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Buy</a>
+                        @endif
                     </div>
                 </div>
             </div>
