@@ -21,7 +21,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::prefix('products')->group(function () {
     Route::get('', [ProductController::class, 'index'])->name('product.home');
-    Route::get('/{id}', [ProductController::class, 'show'])->name('product.show');
+    Route::get('/{product}', [ProductController::class, 'show'])->name('product.show');
 });
 
 Route::prefix('admin')->group(function () {
