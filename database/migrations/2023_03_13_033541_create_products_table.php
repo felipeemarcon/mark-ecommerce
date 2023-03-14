@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->longText('description')->nullable();
-            $table->string('status')->default('in_stock');
-            $table->float('price');
+            $table->integer('stock')->default(0);
+            $table->decimal('price');
             $table->string('image')->nullable();
             $table->timestamps();
         });
