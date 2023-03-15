@@ -27,7 +27,6 @@ class AdminProductController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $title = $request->title;
-        $data['slug'] = Str::slug($title);
 
         $data = $request->validate([
             'title' => 'required|string',
@@ -38,14 +37,14 @@ class AdminProductController extends Controller
         ]);
 
         if (!empty($data['image']) && $data['image']->isValid()) {
-            $image = $data['image'];
-            $image_path = $image->store('products', 'public');
-            $data['image'] = $image_path;
+            $data['image'] = $this::storageImage($data['image']);
         }
+
+        $data['slug'] = Str::slug($title);
 
         Product::create($data);
 
-        return Redirect::route('admin.products.home');
+        return Redirect::route('admin.products');
     }
 
     public function edit(Product $product): View
@@ -53,8 +52,29 @@ class AdminProductController extends Controller
         return view('admin.products.edit', compact('product'));
     }
 
-    public function update(): RedirectResponse
+    public function update(Product $product, Request $request): RedirectResponse
     {
-        return Redirect::route('admin.products.home');
+        $data = $request->validate([
+            'title' => 'required|string',
+            'stock' => 'numeric|nullable',
+            'price' => 'required|integer',
+            'image' => 'image|nullable',
+            'description' => 'required|string',
+        ]);
+
+        if (!empty($data['image']) && $data['image']->isValid()) {
+            $data['image'] = $this::storageImage($data['image']);
+        }
+
+        $product->fill($data);
+        $product->save();
+
+        return Redirect::route('admin.products');
+    }
+
+    static private function storageImage($image): String
+    {
+        $image_path = $image->store('products', 'public');
+        return $image_path;
     }
 }
