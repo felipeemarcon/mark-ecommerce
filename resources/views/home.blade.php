@@ -8,7 +8,7 @@
                     <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
                         <a href="{{ route('product.show', $product->slug) }}" class="block relative h-48 rounded overflow-hidden">
                             <img alt="ecommerce" class="object-cover object-center w-full h-full block"
-                                src="{{ $product->image }}">
+                                src="{{ Storage::disk('public')->url($product->image) }}">
                         </a>
                         <div class="mt-4">
                             <a href="{{ route('product.show', $product->slug) }}">

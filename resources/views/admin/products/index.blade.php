@@ -38,15 +38,15 @@
                                 <td class="px-4 py-3">{{ $product->id }}</td>
                                 <td class="px-4 py-3">
                                     <img alt="ecommerce" class="object-cover object-center w-full h-full block"
-                                        src="{{ $product->image }}">
+                                        src="{{ Storage::disk('public')->url($product->image) }}">
                                 </td>
                                 <td class="px-4 py-3">{{ $product->title }}</td>
-                                <td class="px-4 py-3">R$ {{ $product->proce }}</td>
+                                <td class="px-4 py-3">R$ {{ $product->price }}</td>
                                 <td class="px-4 py-3">{{ $product->stock }}</td>
                                 <td class="px-4 py-3">{{ date('j F, Y', strtotime($product->created_at)) }}
                                 </td>
                                 <td class="px-4 py-3 text-sm text-right space-x-3 text-gray-900">
-                                    <a href="{{ route('admin.product_edit', $product->id) }}"
+                                    <a href="{{ route('admin.product.edit', $product->id) }}"
                                         class="mt-3 text-indigo-500 inline-flex items-center">Editar</a>
                                     <a class="mt-3 text-indigo-500 inline-flex items-center">Deletar</a>
                                 </td>
