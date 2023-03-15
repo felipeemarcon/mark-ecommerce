@@ -26,6 +26,12 @@ Route::prefix('products')->group(function () {
 
 Route::prefix('admin')->group(function () {
     Route::get('', [AdminController::class, 'index'])->name('admin.home');
-    Route::get('/products', [AdminProductController::class, 'index'])->name('admin.products.home');
-    Route::get('/products/edit', [AdminProductController::class, 'edit'])->name('admin.products.edit');
+
+    Route::prefix('products')->group(function () {
+        Route::get('', [AdminProductController::class, 'index'])->name('admin.products.home');
+        Route::get('create', [AdminProductController::class, 'create'])->name('admin.product.create');
+        Route::post('', [AdminProductController::class, 'store'])->name('admin.product.create');
+        Route::get('{product}/edit', [AdminProductController::class, 'edit'])->name('admin.product.edit');
+        Route::put('', [AdminProductController::class, 'update'])->name('admin.product.edit');
+    });
 });
