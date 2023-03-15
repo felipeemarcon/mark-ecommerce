@@ -8,6 +8,7 @@
                 <div class="flex items-center justify-between mb-2">
                     <h1 class="text-2xl font-medium title-font mb-2 text-gray-900">Products</h1>
                     <a
+                        href={{ route('admin.product_create') }}
                         class="flex ml-auto text-white bg-indigo-500 border-0 py-1.5 px-3 text-sm focus:outline-none hover:bg-indigo-600 rounded">Add
                         new product</a>
                 </div>
@@ -24,6 +25,8 @@
                                 Price</th>
                             <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">
                                 Stock</th>
+                            <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">
+                                Created at</th>
                             <th
                                 class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 text-right">
                                 Actions</th>
@@ -32,14 +35,16 @@
                     <tbody class="divide-y">
                         @foreach ($products as $product)
                             <tr class="bg-gray-50">
-                                <td class="px-4 py-3">2</td>
+                                <td class="px-4 py-3">{{ $product->id }}</td>
                                 <td class="px-4 py-3">
                                     <img alt="ecommerce" class="object-cover object-center w-full h-full block"
-                                        src="https://dummyimage.com/800x450">
+                                        src="{{ $product->image }}">
                                 </td>
                                 <td class="px-4 py-3">{{ $product->title }}</td>
                                 <td class="px-4 py-3">R$ {{ $product->proce }}</td>
                                 <td class="px-4 py-3">{{ $product->stock }}</td>
+                                <td class="px-4 py-3">{{ date('j F, Y', strtotime($product->created_at)) }}
+                                </td>
                                 <td class="px-4 py-3 text-sm text-right space-x-3 text-gray-900">
                                     <a href="{{ route('admin.product_edit', $product->id) }}"
                                         class="mt-3 text-indigo-500 inline-flex items-center">Editar</a>
