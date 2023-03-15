@@ -1,4 +1,5 @@
 @extends('layouts.default')
+@section('title', "$product->title - Mark Shop")
 
 @section('content')
     <section class="text-gray-600 overflow-hidden">
