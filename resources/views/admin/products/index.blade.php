@@ -8,7 +8,7 @@
                 <div class="flex items-center justify-between mb-2">
                     <h1 class="text-2xl font-medium title-font mb-2 text-gray-900">Products</h1>
                     <a
-                        href={{ route('admin.product_create') }}
+                        href={{ route('admin.product.create') }}
                         class="flex ml-auto text-white bg-indigo-500 border-0 py-1.5 px-3 text-sm focus:outline-none hover:bg-indigo-600 rounded">Add
                         new product</a>
                 </div>
