@@ -1,5 +1,5 @@
 @extends('layouts.default')
-@section('title', "Mark Shop - Admin | Products")
+@section('title', 'Mark Shop - Admin | Products')
 
 @section('content')
     <section class="text-gray-600">
@@ -8,7 +8,8 @@
                 <div class="flex items-center justify-between mb-2">
                     <h1 class="text-2xl font-medium title-font mb-2 text-gray-900">Products</h1>
                     <a
-                        class="flex ml-auto text-white bg-indigo-500 border-0 py-1.5 px-3 text-sm focus:outline-none hover:bg-indigo-600 rounded">Add new product</a>
+                        class="flex ml-auto text-white bg-indigo-500 border-0 py-1.5 px-3 text-sm focus:outline-none hover:bg-indigo-600 rounded">Add
+                        new product</a>
                 </div>
                 <table class="table-auto w-full text-left whitespace-no-wrap">
                     <thead>
@@ -29,34 +30,23 @@
                         </tr>
                     </thead>
                     <tbody class="divide-y">
-                        <tr>
-                            <td class="px-4 py-3">1</td>
-                            <td class="px-4 py-3">
-                                <img alt="ecommerce" class="object-cover object-center w-full h-full block"
-                                    src="https://dummyimage.com/800x450">
-                            </td>
-                            <td class="px-4 py-3">Produto 1</td>
-                            <td class="px-4 py-3">R$10</td>
-                            <td class="px-4 py-3">10</td>
-                            <td class="px-4 py-3 text-sm text-right space-x-3 text-gray-900">
-                                <a class="mt-3 text-indigo-500 inline-flex items-center">Edit</a>
-                                <a class="mt-3 text-indigo-500 inline-flex items-center">Delete</a>
-                            </td>
-                        </tr>
-                        <tr class="bg-gray-50">
-                            <td class="px-4 py-3">2</td>
-                            <td class="px-4 py-3">
-                                <img alt="ecommerce" class="object-cover object-center w-full h-full block"
-                                    src="https://dummyimage.com/800x450">
-                            </td>
-                            <td class="px-4 py-3">Produto 2</td>
-                            <td class="px-4 py-3">R$10</td>
-                            <td class="px-4 py-3">10</td>
-                            <td class="px-4 py-3 text-sm text-right space-x-3 text-gray-900">
-                                <a class="mt-3 text-indigo-500 inline-flex items-center">Editar</a>
-                                <a class="mt-3 text-indigo-500 inline-flex items-center">Deletar</a>
-                            </td>
-                        </tr>
+                        @foreach ($products as $product)
+                            <tr class="bg-gray-50">
+                                <td class="px-4 py-3">2</td>
+                                <td class="px-4 py-3">
+                                    <img alt="ecommerce" class="object-cover object-center w-full h-full block"
+                                        src="https://dummyimage.com/800x450">
+                                </td>
+                                <td class="px-4 py-3">{{ $product->title }}</td>
+                                <td class="px-4 py-3">R$ {{ $product->proce }}</td>
+                                <td class="px-4 py-3">{{ $product->stock }}</td>
+                                <td class="px-4 py-3 text-sm text-right space-x-3 text-gray-900">
+                                    <a href="{{ route('admin.product_edit', $product->id) }}"
+                                        class="mt-3 text-indigo-500 inline-flex items-center">Editar</a>
+                                    <a class="mt-3 text-indigo-500 inline-flex items-center">Deletar</a>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
