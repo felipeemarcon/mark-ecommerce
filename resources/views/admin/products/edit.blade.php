@@ -41,14 +41,21 @@
                         <div class="p-2 w-1/2">
                             <div class="relative">
                                 <label for="image" class="leading-7 text-sm text-gray-600">Product mage</label>
-                                <input type="file" id="image" name="image"
-                                    class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                                <label class="block pt-1" for="image">
+                                    <span class="sr-only">Choose product photo</span>
+                                    <input type="file" id="image" name="image" class="block w-full cursor-pointer text-sm text-slate-500 file:cursor-pointer file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100
+                                    "/>
+                                </label>
                             </div>
                         </div>
 
                         @if ($product->image)
-                            <div class="flex flex-col p-2 w-full">
-                                <img src="{{ Storage::disk('public')->url($product->image) }}" alt="">
+                            <div class="flex flex-col p-2 w-1/2">
+                                <div class="border-2 border-dashed border-slate-200 p-2 rounded-lg mr-auto">
+                                    <img class="aspect-square object-cover object-center w-full h-full block rounded-md"
+                                        src="{{ Storage::disk('public')->url($product->image) }}"
+                                        alt="{{ $product->title }}">
+                                </div>
                                 <a href="{{ route('admin.product.destroyImage', $product->id) }}"
                                     class="flex mr-auto mt-2 items-start text-red-700 text-sm font-semibold bg-red-100 p-3 rounded hover:bg-red-200 transition-colors">Delete
                                     image</a>

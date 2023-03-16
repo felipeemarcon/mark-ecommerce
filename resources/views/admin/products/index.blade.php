@@ -37,7 +37,8 @@
                             <tr class="bg-gray-50">
                                 <td class="px-4 py-3">{{ $product->id }}</td>
                                 <td class="px-4 py-3">
-                                    <img alt="ecommerce" class="object-cover object-center w-full h-full block"
+                                    <img alt="{{ $product->title }}"
+                                    class="aspect-square object-cover object-center w-full h-full block"
                                         src="{{ Storage::disk('public')->url($product->image) }}">
                                 </td>
                                 <td class="px-4 py-3">{{ $product->title }}</td>
@@ -48,10 +49,10 @@
                                 <td class="px-4 py-3 text-sm text-right space-x-3 text-gray-900">
                                     <a
                                         href="{{ route('admin.product.edit', $product->id) }}"
-                                        class="mt-3 text-indigo-500 inline-flex items-center">Editar</a>
+                                        class="text-indigo-500 inline-flex items-center">Editar</a>
                                     <a
                                         href="{{ route('admin.product.destroy', $product->id) }}"
-                                        class="mt-3 text-indigo-500 inline-flex items-center">Deletar</a>
+                                        class="text-indigo-500 inline-flex items-center">Deletar</a>
                                 </td>
                             </tr>
                         @endforeach
