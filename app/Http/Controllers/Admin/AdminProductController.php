@@ -7,7 +7,6 @@ use App\Http\Requests\ProductStoreRequest;
 use App\Models\Product;
 
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;

@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index(): View
+    public function index(Request $request): View
     {
-        $products = Product::latest()->paginate(12);
+        $products = Product::query();
+        $products->when($request->search, fn ($query, $value) => $query->where('title', 'like', "%$value%"));
+        $products = $products->latest()->paginate(12);
+
         return view('home', compact('products'));
     }
 }
