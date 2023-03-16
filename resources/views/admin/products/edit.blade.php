@@ -9,7 +9,6 @@
                     <h1 class="text-2xl font-medium title-font mb-2 text-gray-900">Edit product</h1>
                 </div>
 
-                {{ $product->slug }}
                 <form method="POST" action="{{ route('admin.product.update', $product->id) }}" enctype="multipart/form-data">
                     @csrf
                     @method('put')
@@ -17,36 +16,45 @@
                         <div class="p-2 w-1/2">
                             <div class="relative">
                                 <label for="title" class="leading-7 text-sm text-gray-600">Product title</label>
-                                <input type="text" id="title" name="title" value="{{ $product->title }}"
+                                <input type="text" id="title" name="title" value="{{ old('title', $product->title) }}"
                                     class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                             </div>
+                            @error('title')
+                                <div class="mt-2 text-red-400 text-sm">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="p-2 w-1/2">
                             <div class="relative">
                                 <label for="price" class="leading-7 text-sm text-gray-600">Price</label>
-                                <input type="number" id="price" name="price" value="{{ $product->price }}"
+                                <input type="text" id="price" name="price" value="{{ old('price', $product->price) }}"
                                     class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
                             </div>
+                            @error('price')
+                                <div class="mt-2 text-red-400 text-sm">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="p-2 w-1/2">
                             <div class="relative">
                                 <label for="name" class="leading-7 text-sm text-gray-600">Stock</label>
-                                <input type="text" id="stock" name="stock" value="{{ $product->stock }}"
+                                <input type="text" id="stock" name="stock" value="{{ old('stock', $product->stock) }}"
                                     class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                             </div>
                         </div>
 
                         <div class="p-2 w-1/2">
                             <div class="relative">
-                                <label for="image" class="leading-7 text-sm text-gray-600">Product mage</label>
+                                <label for="image" class="leading-7 text-sm text-gray-600">Product image</label>
                                 <label class="block pt-1" for="image">
                                     <span class="sr-only">Choose product photo</span>
                                     <input type="file" id="image" name="image" class="block w-full cursor-pointer text-sm text-slate-500 file:cursor-pointer file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100
                                     "/>
                                 </label>
                             </div>
+                            @error('image')
+                                <div class="mt-2 text-red-400 text-sm">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         @if ($product->image)
@@ -66,23 +74,17 @@
                             <div class="relative">
                                 <label for="description" class="leading-7 text-sm text-gray-600">Description</label>
                                 <textarea id="description" name="description"
-                                    class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">{{ $product->description }}</textarea>
+                                    class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">{{ old('description', $product->description) }}</textarea>
                             </div>
+                            @error('description')
+                                <div class="mt-2 text-red-400 text-sm">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="p-2 w-full">
                             <button type="submit"
                                 class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Update</button>
                         </div>
-
-                        <div class="p-2 w-full">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-
                     </div>
                 </form>
             </div>

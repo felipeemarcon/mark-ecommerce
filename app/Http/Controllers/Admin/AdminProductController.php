@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProductStoreRequest;
 use App\Models\Product;
 
 use Illuminate\Contracts\View\View;
@@ -25,11 +26,11 @@ class AdminProductController extends Controller
         return view('admin.products.create');
     }
 
-    public function store(Request $request): RedirectResponse
+    public function store(ProductStoreRequest $request): RedirectResponse
     {
         $title = $request->title;
 
-        $data = $request->validate($this->validateData());
+        $data = $request->validated();
 
         if (!empty($data['image']) && $data['image']->isValid()) {
             $data['image'] = $this::storageImage($data['image']);
@@ -47,9 +48,9 @@ class AdminProductController extends Controller
         return view('admin.products.edit', compact('product'));
     }
 
-    public function update(Product $product, Request $request): RedirectResponse
+    public function update(Product $product, ProductStoreRequest $request): RedirectResponse
     {
-        $data = $request->validate($this->validateData());
+        $data = $request->validated();
 
         if (!empty($data['image']) && $data['image']->isValid()) {
             $this->storageDestroyImage($product);
@@ -75,7 +76,7 @@ class AdminProductController extends Controller
         $product->image = null;
         $product->save();
 
-        return Redirect::route('admin.products');
+        return Redirect::route('admin.product.edit', $product->id);
     }
 
     static private function storageImage($image): String
@@ -87,16 +88,5 @@ class AdminProductController extends Controller
     static private function storageDestroyImage(Product $product): void
     {
         Storage::disk('public')->delete($product->image ?? '');
-    }
-
-    static private function validateData(): array
-    {
-        return [
-            'title' => 'required|string',
-            'stock' => 'numeric|nullable',
-            'price' => 'required|decimal:2',
-            'image' => 'image|nullable',
-            'description' => 'required|string'
-        ];
     }
 }
