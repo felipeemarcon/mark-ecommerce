@@ -34,4 +34,8 @@ Route::controller(AdminProductController::class)->prefix('admin/products')->grou
     Route::post('', 'store')->name('admin.product.store');
     Route::get('/{product}/edit', 'edit')->name('admin.product.edit');
     Route::put('/{product}', 'update')->name('admin.product.update');
+
+    // Destroys
+    Route::get('/{product}/delete', 'destroy')->name('admin.product.destroy');
+    Route::get('/{product}/delete-image', 'destroyImage')->name('admin.product.destroyImage');
 });

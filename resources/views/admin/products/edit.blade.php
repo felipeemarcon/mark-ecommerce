@@ -10,11 +10,7 @@
                 </div>
 
                 {{ $product->slug }}
-                <form
-                    method="POST"
-                    action="{{ route('admin.product.update', $product->id) }}"
-                    enctype="multipart/form-data"
-                >
+                <form method="POST" action="{{ route('admin.product.update', $product->id) }}" enctype="multipart/form-data">
                     @csrf
                     @method('put')
                     <div class="flex flex-wrap">
@@ -50,6 +46,15 @@
                             </div>
                         </div>
 
+                        @if ($product->image)
+                            <div class="flex flex-col p-2 w-full">
+                                <img src="{{ Storage::disk('public')->url($product->image) }}" alt="">
+                                <a href="{{ route('admin.product.destroyImage', $product->id) }}"
+                                    class="flex mr-auto mt-2 items-start text-red-700 text-sm font-semibold bg-red-100 p-3 rounded hover:bg-red-200 transition-colors">Delete
+                                    image</a>
+                            </div>
+                        @endif
+
                         <div class="p-2 w-full">
                             <div class="relative">
                                 <label for="description" class="leading-7 text-sm text-gray-600">Description</label>
@@ -59,8 +64,7 @@
                         </div>
 
                         <div class="p-2 w-full">
-                            <button
-                                type="submit"
+                            <button type="submit"
                                 class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Update</button>
                         </div>
 
