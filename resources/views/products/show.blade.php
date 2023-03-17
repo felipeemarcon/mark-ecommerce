@@ -8,17 +8,17 @@
                 <img alt="ecommerce" class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded"
                     src="{{ $product->image }}">
                 <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-                    <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{{ $product->title }}</h1>
+                    <span class="inline-flex text-sm text-slate-400 mb-4 rounded-full bg-slate-100 px-2 leading-5">{{ $product->product_category->name }}</span>
+                    <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{{ $product->name }}</h1>
                     <p class="leading-relaxed">{{ $product->description }}</p>
                     <div class="my-3">
                         @if ($product->stock)
                             <span
-                                class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800">Em
-                                estoque</span>
+                                class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800">In
+                                stock</span>
                         @else
                             <span
-                                class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-slate-100 text-slate-800">Fora
-                                de estoque</span>
+                                class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-slate-100 text-slate-800">Out of stock</span>
                         @endif
                     </div>
 
@@ -26,7 +26,7 @@
                         <span class="title-font font-medium text-2xl text-gray-900">${{ $product->price }}</span>
                         @if ($product->stock)
                             <a
-                                class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Buy</a>
+                                class="cursor-pointer flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Buy</a>
                         @endif
                     </div>
                 </div>

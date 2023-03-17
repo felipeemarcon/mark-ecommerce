@@ -19,10 +19,10 @@ class ProductCategoryFactory extends Factory
     {
         $name = $this->faker->word();
         return [
-            'name' => $name,
-            'slug' => Str::slug($name),
-            'description' => $this->faker->paragraphs(1, true),
-            'image' => $this->faker->imageUrl(800, 450, 'Product Category'),
+            'name'          => $name,
+            'slug'          => Str::slug($name),
+            'description'   => $this->faker->paragraphs(1, true),
+            'image'         => $this->faker->imageUrl(800, 450, 'Product Category'),
         ];
     }
 }
