@@ -11,7 +11,7 @@ class HomeController extends Controller
     public function index(Request $request): View
     {
         $products = Product::query();
-        $products->when($request->search, fn ($query, $value) => $query->where('title', 'like', "%$value%"));
+        $products->when($request->search, fn ($query, $value) => $query->where('name', 'like', "%$value%"));
         $products = $products->latest()->paginate(12);
 
         return view('home', compact('products'));

@@ -24,8 +24,9 @@
                                 src="{{ Storage::disk('public')->url($product->image) }}">
                         </a>
                         <div class="mt-4">
+                            <span class="inline-flex text-sm text-slate-400 mb-4 rounded-full bg-slate-100 px-2 leading-5">{{ $product->product_category->name }}</span>
                             <a href="{{ route('product.show', $product->slug) }}">
-                                <h2 class="text-gray-900 title-font text-lg font-medium">{{ $product->title }}</h2>
+                                <h2 class="text-gray-900 title-font text-lg font-medium">{{ $product->name }}</h2>
                             </a>
                             <p class="mt-1">${{ $product->price }}</p>
                         </div>
