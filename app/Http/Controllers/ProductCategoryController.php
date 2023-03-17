@@ -11,6 +11,14 @@ class ProductCategoryController extends Controller
     {
         // $categories = ProductCategory::all();
         $categories = ProductCategory::with('products')->get();
-        dd($categories->toArray());
+
+        return view('products_categories.index', compact('categories'));
+    }
+
+    public function show(string $category_id)
+    {
+        // dd($category_id);
+        $category = ProductCategory::with('products')->find($category_id);
+        dd($category->toArray());
     }
 }
