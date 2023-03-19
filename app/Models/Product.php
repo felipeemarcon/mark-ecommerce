@@ -11,7 +11,7 @@ class Product extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'slug', 'price', 'stock', 'image', 'description', 'product_category_id'];
-    protected $with = ['product_category', 'product_attribute'];
+    protected $with = ['product_category', 'product_attribute', 'product_inventory'];
 
     public function product_category(): BelongsTo
     {
@@ -21,5 +21,10 @@ class Product extends Model
     public function productAttribute(): BelongsTo
     {
         return $this->belongsTo(ProductAttribute::class);
+    }
+
+    public function productInventory()
+    {
+        return $this->hasOne(ProductInventory::class);
     }
 }
