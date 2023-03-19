@@ -22,6 +22,11 @@ return new class extends Migration
                 ->constrained()
                 ->onUpdate('CASCADE')
                 ->onDelete('CASCADE');
+            $table->foreignId('product_attribute_id')
+                ->nullable()
+                ->constrained()
+                ->onUpdate('CASCADE')
+                ->onDelete('CASCADE');
             $table->integer('stock')->default(0);
             $table->decimal('price');
             $table->string('image')->nullable();
