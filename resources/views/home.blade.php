@@ -3,13 +3,11 @@
 @section('content')
     <section class="text-gray-600">
         <div class="container px-5 pt-8 mx-auto">
-            <form
-                method="GET"
-                class="flex gap-2">
-            <input type="search" id="search" name="search" value="" placeholder="Search for a product"
-                class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-4 px-3 leading-8 transition-colors duration-200 ease-in-out" />
-            <button type="submit"
-                class="flex items-center ml-auto text-white bg-indigo-500 border-0 py-2 px-12 focus:outline-none hover:bg-indigo-600 rounded">Search</button>
+            <form method="GET" class="flex gap-2">
+                <input type="search" id="search" name="search" value="" placeholder="Search for a product"
+                    class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-4 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                <button type="submit"
+                    class="flex items-center ml-auto text-white bg-indigo-500 border-0 py-2 px-12 focus:outline-none hover:bg-indigo-600 rounded">Search</button>
             </form>
         </div>
     </section>
@@ -24,7 +22,10 @@
                                 src="{{ Storage::disk('public')->url($product->image) }}">
                         </a>
                         <div class="mt-4">
-                            <span class="inline-flex text-sm text-slate-400 mb-4 rounded-full bg-slate-100 px-2 leading-5">{{ $product->product_category->name }}</span>
+                            @if ($product->productCategory)
+                                <span
+                                    class="inline-flex text-sm text-slate-400 mb-4 rounded-full bg-slate-100 px-2 leading-5">{{ $product->productCategory->name }}</span>
+                            @endif
                             <a href="{{ route('product.show', $product->slug) }}">
                                 <h2 class="text-gray-900 title-font text-lg font-medium">{{ $product->name }}</h2>
                             </a>

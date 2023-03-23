@@ -1,5 +1,5 @@
 @extends('layouts.default')
-@section('title', "$product->title - Mark Shop")
+@section('title', "$product->name - Mark Shop")
 
 @section('content')
     <section class="text-gray-600 overflow-hidden">
@@ -8,7 +8,7 @@
                 <img alt="ecommerce" class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded"
                     src="{{ $product->image }}">
                 <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-                    <span class="inline-flex text-sm text-slate-400 mb-4 rounded-full bg-slate-100 px-2 leading-5">{{ $product->product_category->name }}</span>
+                    <span class="inline-flex text-sm text-slate-400 mb-4 rounded-full bg-slate-100 px-2 leading-5">{{ $product->productCategory->name }}</span>
                     <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{{ $product->name }}</h1>
                     <p class="leading-relaxed">{{ $product->description }}</p>
                     <div class="my-3">
