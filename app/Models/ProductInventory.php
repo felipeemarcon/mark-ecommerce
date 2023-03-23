@@ -9,8 +9,10 @@ class ProductInventory extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['quantity'];
+
     public function product()
     {
-        return $this->hasOne(Product::class);
+        return $this->belongsTo(Product::class);
     }
 }

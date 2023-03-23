@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductStoreRequest;
 use App\Models\Product;
-
+use App\Models\ProductInventory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\RedirectResponse;
@@ -27,17 +27,22 @@ class AdminProductController extends Controller
 
     public function store(ProductStoreRequest $request): RedirectResponse
     {
-        $title = $request->title;
 
+        $productName = $request->productName;
         $data = $request->validated();
 
         if (!empty($data['image']) && $data['image']->isValid()) {
             $data['image'] = $this::storageImage($data['image']);
         }
 
-        $data['slug'] = Str::slug($title);
+        $data['slug'] = Str::slug($productName);
 
-        Product::create($data);
+        $product = Product::create($data);
+        $quantity = $request->stock;
+
+        $inventory = ProductInventory::create(compact('quantity'));
+        $inventory->product()->associate($product);
+        $inventory->save();
 
         return Redirect::route('admin.products');
     }
@@ -49,6 +54,9 @@ class AdminProductController extends Controller
 
     public function update(Product $product, ProductStoreRequest $request): RedirectResponse
     {
+
+        dd($product);
+
         $data = $request->validated();
 
         if (!empty($data['image']) && $data['image']->isValid()) {

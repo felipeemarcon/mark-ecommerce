@@ -12,33 +12,41 @@
                 <form enctype="multipart/form-data" method="POST" action={{ route('admin.product.store') }}>
                     @csrf
                     <div class="flex flex-wrap">
-                        <div class="p-2 w-1/2">
+                        <div class="p-2 w-full">
                             <div class="relative">
-                                <label for="title" class="leading-7 text-sm text-gray-600">Nome do produto</label>
-                                <input type="text" id="title" name="title" value="{{ old('title') }}"
+                                <label for="name" class="leading-7 text-sm text-gray-600">Product name</label>
+                                <input type="text" id="name" name="name" value="{{ old('name') }}"
                                     class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                             </div>
                         </div>
 
-                        <div class="p-2 w-1/2">
+                        <div class="p-2 w-1/3">
                             <div class="relative">
-                                <label for="name" class="leading-7 text-sm text-gray-600">Preço</label>
+                                <label for="price" class="leading-7 text-sm text-gray-600">Price</label>
                                 <input type="number" id="price" name="price" value="{{ old('price') }}"
                                     class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
                             </div>
                         </div>
 
-                        <div class="p-2 w-1/2">
+                        <div class="p-2 w-1/3">
                             <div class="relative">
-                                <label for="name" class="leading-7 text-sm text-gray-600">Estoque</label>
+                                <label for="stock" class="leading-7 text-sm text-gray-600">Stock</label>
                                 <input type="text" id="stock" name="stock" value="{{ old('stock') }}"
+                                    class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                            </div>
+                        </div>
+
+                        <div class="p-2 w-1/3">
+                            <div class="relative">
+                                <label for="sku" class="leading-7 text-sm text-gray-600">SKU</label>
+                                <input type="text" id="sku" name="sku" value="{{ old('sku') }}"
                                     class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                             </div>
                         </div>
 
                         <div class="p-2 w-1/2">
                             <div class="relative">
-                                <label for="name" class="leading-7 text-sm text-gray-600">Imagem de capa</label>
+                                <label for="image" class="leading-7 text-sm text-gray-600">Product image</label>
                                 <input type="file" id="image" name="image"
                                     class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
                             </div>
@@ -46,7 +54,7 @@
 
                         <div class="p-2 w-full">
                             <div class="relative">
-                                <label for="name" class="leading-7 text-sm text-gray-600">Descrição</label>
+                                <label for="description" class="leading-7 text-sm text-gray-600">Description</label>
                                 <textarea id="description" name="description"
                                     class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"></textarea>
                             </div>

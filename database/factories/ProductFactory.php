@@ -27,7 +27,6 @@ class ProductFactory extends Factory
             'sku'                           => 'SKU-' . $this->faker->regexify('[A-Z]{5}[0-4]{3}'),
             'product_category_id'           => ProductCategory::factory(),
             'product_attribute_id'          => mt_rand(1, 15),
-            'product_inventory_id'          => mt_rand(1, 50),
             'price'                         => $this->faker->randomFloat(2, 2, 1023),
             'image'                         => $this->faker->imageUrl(800, 450, 'Mark Store'),
             'stock'                         => $this->faker->randomDigit()

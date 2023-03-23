@@ -4,7 +4,7 @@
 @section('content')
     <section class="text-gray-600">
         <div class="container px-5 py-24 mx-auto">
-            <div class="lg:w-2/3 w-full mx-auto overflow-auto">
+            <div class="lg:w-2/2 w-full mx-auto overflow-auto">
                 <div class="flex items-center justify-between mb-2">
                     <h1 class="text-2xl font-medium title-font mb-2 text-gray-900">Products</h1>
                     <a
@@ -22,6 +22,8 @@
                             <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">
                                 Name</th>
                             <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">
+                                SKU</th>
+                            <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">
                                 Price</th>
                             <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">
                                 Stock</th>
@@ -37,11 +39,12 @@
                             <tr class="bg-gray-50">
                                 <td class="px-4 py-3">{{ $product->id }}</td>
                                 <td class="px-4 py-3">
-                                    <img alt="{{ $product->title }}"
+                                    <img alt="{{ $product->name }}"
                                     class="aspect-square object-cover object-center w-full h-full block"
                                         src="{{ Storage::disk('public')->url($product->image) }}">
                                 </td>
-                                <td class="px-4 py-3">{{ $product->title }}</td>
+                                <td class="px-4 py-3">{{ $product->name }}</td>
+                                <td class="px-4 py-3">{{ $product->sku }}</td>
                                 <td class="px-4 py-3">R$ {{ $product->price }}</td>
                                 <td class="px-4 py-3">{{ $product->stock }}</td>
                                 <td class="px-4 py-3">{{ date('j F, Y', strtotime($product->created_at)) }}

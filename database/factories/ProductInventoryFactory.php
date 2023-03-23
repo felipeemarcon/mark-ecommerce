@@ -17,7 +17,8 @@ class ProductInventoryFactory extends Factory
     public function definition(): array
     {
         return [
-            'quantity' => $this->faker->numberBetween(20, 240)
+            'quantity'      => $this->faker->numberBetween(20, 240),
+            'product_id'    => mt_rand(1, 50),
         ];
     }
 }
