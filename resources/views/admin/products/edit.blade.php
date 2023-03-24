@@ -9,17 +9,21 @@
                     <h1 class="text-2xl font-medium title-font mb-2 text-gray-900">Edit product</h1>
                 </div>
 
-                <form method="POST" action="{{ route('admin.product.update', $product->id) }}" enctype="multipart/form-data">
+                <form
+                    enctype="multipart/form-data"
+                    method="POST"
+                    action="{{ route('admin.product.update', $product->id) }}"
+                >
                     @csrf
                     @method('put')
                     <div class="flex flex-wrap">
                         <div class="p-2 w-1/2">
                             <div class="relative">
-                                <label for="title" class="leading-7 text-sm text-gray-600">Product title</label>
-                                <input type="text" id="title" name="title" value="{{ old('title', $product->title) }}"
+                                <label for="name" class="leading-7 text-sm text-gray-600">Product name</label>
+                                <input type="text" id="name" name="name" value="{{ old('name', $product->name) }}"
                                     class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                             </div>
-                            @error('title')
+                            @error('name')
                                 <div class="mt-2 text-red-400 text-sm">{{ $message }}</div>
                             @enderror
                         </div>
@@ -38,7 +42,7 @@
                         <div class="p-2 w-1/2">
                             <div class="relative">
                                 <label for="name" class="leading-7 text-sm text-gray-600">Stock</label>
-                                <input type="text" id="stock" name="stock" value="{{ old('stock', $product->stock) }}"
+                                <input type="text" id="stock" name="stock" value="{{ old('stock', $product->productInventory->quantity) }}"
                                     class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                             </div>
                         </div>
