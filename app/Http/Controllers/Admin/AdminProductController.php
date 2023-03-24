@@ -52,13 +52,12 @@ class AdminProductController extends Controller
 
     public function edit(Product $product): View
     {
-        return view('admin.products.edit', compact('product'));
+        $categories = ProductCategory::all();
+        return view('admin.products.edit', compact('product', 'categories'));
     }
 
     public function update(Product $product, ProductStoreRequest $request): RedirectResponse
     {
-
-        dd($product);
 
         $data = $request->validated();
 
